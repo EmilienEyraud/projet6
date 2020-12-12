@@ -3,13 +3,13 @@ const bodyParser = require('body-parser');	// Extraire les objets au Format JSON
 const mongoose = require ('mongoose') // Import dans mongoose
 
 const path = require('path'); // Traiter les requêtes image
-const sauceRoutes = require('./routes/sauces');
+const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 const router = express.Router();
 		
 // Utilisation MongoDB pour la base de données
-mongoose.connect('mongodb+srv://mongodb+srv://Emilien_Eyraud:Emilien123@cluster0.fssln.mongodb.net/evaluationocr?retryWrites=true&w=majority',			
+mongoose.connect('mongodb+srv://Emilien_Eyraud:Emilien123@cluster0.fssln.mongodb.net/ocrproject6?retryWrites=true&w=majority',			
 { useNewUrlParser: true,			
   useUnifiedTopology: true })			
 .then(() => console.log('Connexion à MongoDB réussie !'))			
