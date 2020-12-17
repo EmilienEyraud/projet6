@@ -9,7 +9,7 @@ const userRoutes = require('./routes/user');
 const router = express.Router();
 		
 // Utilisation MongoDB pour la base de données
-mongoose.connect('mongodb+srv://Emilien_Eyraud:Emilien123@cluster0.fssln.mongodb.net/ocrproject6?retryWrites=true&w=majority',			
+mongoose.connect('mongopwd',			
 { useNewUrlParser: true,			
   useUnifiedTopology: true })			
 .then(() => console.log('Connexion à MongoDB réussie !'))			
@@ -29,6 +29,8 @@ app.use(bodyParser.json());
 
 // Utilisation de la route path pour reconnaître les requêtes images
 app.use('/images', express.static(path.join(__dirname, 'images'))); 
+// Utilisation helmet pour protéger notre application de certaines vulnérabilités
+app.use(helmet())
 
 app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
