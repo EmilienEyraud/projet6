@@ -1,17 +1,18 @@
 const express = require('express');		// Utilisation du Framework Express
 const bodyParser = require('body-parser');	// Extraire les objets au Format JSON
 const mongoose = require ('mongoose') // Import dans mongoose
-
+const helmet = require('helmet');// Utilisation helmet pour protéger notre application de certaines vulnérabilités
 const path = require('path'); // Traiter les requêtes image
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
+
 const router = express.Router();
 		
 // Utilisation MongoDB pour la base de données
-mongoose.connect('mongopwd',			
+mongoose.connect(process.env.MONGO_DNS,		
 { useNewUrlParser: true,			
-  useUnifiedTopology: true })			
+  useUnifiedTopology: true },)			
 .then(() => console.log('Connexion à MongoDB réussie !'))			
 .catch(() => console.log('Connexion à MongoDB échouée !'));			
 
@@ -29,11 +30,9 @@ app.use(bodyParser.json());
 
 // Utilisation de la route path pour reconnaître les requêtes images
 app.use('/images', express.static(path.join(__dirname, 'images'))); 
-// Utilisation helmet pour protéger notre application de certaines vulnérabilités
-app.use(helmet())
 
 app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
-
+app.use(helmet());
 
 module.exports = app;		
