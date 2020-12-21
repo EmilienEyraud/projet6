@@ -10,8 +10,9 @@ const userRoutes = require('./routes/user');
 const router = express.Router();
 		
 // Utilisation MongoDB pour la base de données
-mongoose.connect(process.env.MONGO_DNS,		
-{ useNewUrlParser: true,			
+
+mongoose.connect('mongodb+srv://Emilien_Eyraud:Emilien123@cluster0.fssln.mongodb.net/ocrproject6?retryWrites=true&w=majority',
+  { useNewUrlParser: true,			
   useUnifiedTopology: true },)			
 .then(() => console.log('Connexion à MongoDB réussie !'))			
 .catch(() => console.log('Connexion à MongoDB échouée !'));			
