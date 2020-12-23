@@ -33,7 +33,7 @@ exports.signup = (req, res, next) => {
               userId: user._id,				
               token : jwt.sign(	
                 { userId: user._id },	
-                'abcdef123',	
+                process.env.JWT_KEY,	
                 { expiresIn: '24h' }	
               )	
             });				

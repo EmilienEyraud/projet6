@@ -11,7 +11,7 @@ const router = express.Router();
 		
 // Utilisation MongoDB pour la base de données
 
-mongoose.connect('mongodb+srv://Emilien_Eyraud:Emilien123@cluster0.fssln.mongodb.net/ocrproject6?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGO_DSN,
   { useNewUrlParser: true,			
   useUnifiedTopology: true },)			
 .then(() => console.log('Connexion à MongoDB réussie !'))			
