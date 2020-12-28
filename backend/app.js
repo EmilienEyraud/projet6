@@ -2,7 +2,10 @@ const express = require('express');		// Utilisation du Framework Express
 const bodyParser = require('body-parser');	// Extraire les objets au Format JSON
 const mongoose = require ('mongoose') // Import dans mongoose
 const helmet = require('helmet');// Utilisation helmet pour protéger notre application de certaines vulnérabilités
+const xss = require ('xss-clean')//Nettoyage des entrées utilisateurs
 const path = require('path'); // Traiter les requêtes image
+
+
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
@@ -32,8 +35,12 @@ app.use(bodyParser.json());
 // Utilisation de la route path pour reconnaître les requêtes images
 app.use('/images', express.static(path.join(__dirname, 'images'))); 
 
+
+
 app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
 app.use(helmet());
+app.use(xss());
+
 
 module.exports = app;		
