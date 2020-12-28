@@ -19,4 +19,4 @@ const password = passwordStrength(
 
 userSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('User', userSchema, password);
+module.exports = mongoose.model('User', userSchema), password;
