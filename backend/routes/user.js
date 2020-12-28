@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const rateLimit = require ( " express-rate-limit " ) ; // Limitation des tentatives de connection
+const rateLimit = require ( 'express-rate-limit' ) ; // Limitation des tentatives de connection
 
 const userCtrl = require('../controllers/user');
 const createAccountLimiter = rateLimit(
