@@ -1,9 +1,13 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');		
-
+const passwordStrength = require('check-password-strength');
 const User = require ('../models/user')
 
 exports.signup = (req, res, next) => {
+  const strength = passwordStrength(
+    req.body.password
+  )
+  if (strength.value !== 'Strong') return res.status(400).json({ error: 'Votre mot de passe doit être plus sécurisé' })
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
         const user = new User({
